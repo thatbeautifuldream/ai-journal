@@ -1,7 +1,9 @@
+import Landing from "@/components/Landing";
+
 export default function Home() {
   return (
-    <>
-      <h1>Home</h1>
-    </>
+    <main className="flex flex-col h-screen overflow-hidden">
+      <Landing />
+    </main>
   );
 }
