@@ -1,8 +1,11 @@
 import Landing from "@/components/Landing";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { auth, SignedIn, SignedOut } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const { userId } = await auth();
+  let href = userId ? "/journal" : "/new-user";
+
   return (
     <>
       <SignedOut>
@@ -10,7 +13,7 @@ export default function Home() {
           <Landing />
         </div>
       </SignedOut>
-      <SignedIn>{redirect("/dashboard")}</SignedIn>
+      <SignedIn>{redirect("/journal")}</SignedIn>
     </>
   );
 }
